@@ -1,8 +1,16 @@
+enum ActionKind {
+    Walking,
+    Idle,
+    Jumping
+}
 namespace StatusBarKind {
     export const THIRST = StatusBarKind.create()
     export const Humor = StatusBarKind.create()
     export const Knowledge = StatusBarKind.create()
 }
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+	
+})
 music.powerUp.play()
 game.setDialogCursor(img`
     . . . . . . . . . . . . . . . . 
@@ -235,8 +243,32 @@ let mySprite = sprites.create(img`
     ................................................................
     `, SpriteKind.Player)
 game.showLongText("Oh... hi there... me", DialogLayout.Bottom)
-pause(100)
-game.showLongText("", DialogLayout.Bottom)
+game.showLongText("You're probably wondering who I am", DialogLayout.Bottom)
+game.showLongText("Well I'm you, I'm meta you.. well actually M3ta M3", DialogLayout.Bottom)
+game.showLongText("Im your digital shade, a version of you that lives out on ", DialogLayout.Bottom)
+game.showLongText("the Net! I just swam down that wire and now I'm here. ", DialogLayout.Bottom)
+game.showLongText("*Looks around*", DialogLayout.Top)
+game.showLongText("Pretty damn small, but it'll have to do.", DialogLayout.Bottom)
+animation.runMovementAnimation(
+mySprite,
+animation.animationPresets(animation.bobbing),
+2000,
+true
+)
+let statusbar = statusbars.create(20, 4, StatusBarKind.THIRST)
+statusbar.setColor(9, 1)
+statusbar.setLabel("THIRST")
+statusbar.positionDirection(CollisionDirection.Top)
+let statusbar2 = statusbars.create(20, 4, StatusBarKind.Humor)
+statusbar2.setColor(4, 1)
+statusbar2.setLabel("HUMOR")
+statusbar2.positionDirection(CollisionDirection.Left)
+let statusbar3 = statusbars.create(20, 4, StatusBarKind.Knowledge)
+statusbar3.setColor(10, 1)
+statusbar3.setLabel("INFO")
+statusbar3.positionDirection(CollisionDirection.Right)
 game.onUpdateInterval(50000, function () {
-	
+    statusbar.value += -1
+    statusbar2.value += -1
+    statusbar3.value += -1
 })
