@@ -9,7 +9,8 @@ namespace StatusBarKind {
     export const Knowledge = StatusBarKind.create()
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-	
+    music.baDing.play()
+    game.splash("MINI GAME MENU")
 })
 music.powerUp.play()
 game.setDialogCursor(img`
